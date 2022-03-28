@@ -93,7 +93,7 @@ export const MainProvider = ({ children }) => {
         NFT_CONTRACT_ABI,
         signer
       );
-      const tx = await contract.mint({ value: utils.parseEther("0.01") });
+      const tx = await contract.mint({ value: utils.parseEther("0.1") });
       await tx.wait();
       toast("You successfully minted a bao-bao");
     } catch (error) {
