@@ -13,14 +13,14 @@ contract Marcin is ERC721Enumerable, Ownable {
      */
     string _baseTokenURI;
 
-    //  _price is the price of one LW3Punks NFT
-    uint256 public _price = 0.01 ether;
+    //  _price is the price of one Marcin NFT
+    uint256 public _price = 0.1 ether;
 
     // _paused is used to pause the contract in case of an emergency
     bool public _paused;
 
-    // max number of LW3Punks
-    uint256 public maxTokenIds = 10;
+    // max number of Marcin NFTs
+    uint256 public maxTokenIds = 6;
 
     // total number of tokenIds minted
     uint256 public tokenIds;
@@ -30,11 +30,6 @@ contract Marcin is ERC721Enumerable, Ownable {
         _;
     }
 
-    /**
-     * @dev ERC721 constructor takes in a `name` and a `symbol` to the token collection.
-     * name in our case is `LW3Punks` and symbol is `LW3P`.
-     * Constructor for LW3P takes in the baseURI to set _baseTokenURI for the collection.
-     */
     constructor(string memory baseURI) ERC721("Marcin", "MRN") {
         _baseTokenURI = baseURI;
     }
@@ -43,8 +38,8 @@ contract Marcin is ERC721Enumerable, Ownable {
      * @dev mint allows an user to mint 1 NFT per transaction.
      */
     function mint() public payable onlyWhenNotPaused {
-        require(tokenIds < maxTokenIds, "Exceed maximum supply");
-        require(msg.value >= _price, "Ether sent is not correct");
+        require(tokenIds < maxTokenIds, "All the NFTs are already minted");
+        require(msg.value >= _price, "Amount of MATIC is not correct");
         tokenIds += 1;
         _safeMint(msg.sender, tokenIds);
     }
@@ -99,27 +94,8 @@ contract Marcin is ERC721Enumerable, Ownable {
         address _owner = owner();
         uint256 amount = address(this).balance;
         (bool sent, ) = _owner.call{value: amount}("");
-        require(sent, "Failed to send Ether");
+        require(sent, "Failed to send Value");
     }
-
-    function getOwnedNFTs() public view returns (string memory) {
-        address sender = msg.sender;
-
-        uint256 balance = balanceOf(sender);
-
-        require(balance > 0, "You dont own any Marcin NFT's");
-
-        string memory tokens;
-
-        for (uint256 i = 0; i < balance; i++) {
-            uint256 tokenId = tokenOfOwnerByIndex(sender, i);
-            tokens = string(abi.encodePacked(tokens, " ", tokenId.toString()));
-        }
-
-        return tokens;
-    }
-
-    // Call a transferOwnership function using ownable.sol (inheriting from that) to transfer the ownership to Marcin after deploying your smart contract.
 
     // Function to receive Ether. msg.data must be empty
     receive() external payable {}

@@ -8,7 +8,7 @@ async function main() {
  so randomWinnerGame here is a factory for instances of our RandomWinnerGame contract.
  */
 
-  const metadataURL = "ipfs://QmPbcmBt12acAEGR4VzPqtQ55wB9EeLAao8zmqKFSSheKn/";
+  const metadataURL = "ipfs://QmPaCfjnS3dBGKbnHKM5TauxiY2b1bLmUaAeQgx9kLd88a/";
 
   const marcinNFT = await ethers.getContractFactory("Marcin");
   // deploy the contract
@@ -41,5 +41,3 @@ main()
     console.error(error);
     process.exit(1);
   });
-
-// Deployed Contract Address: 0xA8C7d79A6d63a7b425AEC7e82E8d79C4A72e5C5d
