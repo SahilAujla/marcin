@@ -2,6 +2,7 @@ import Link from "next/link";
 import GradientButton from './GradientButton';
 import { useContext } from "react";
 import { MainContext } from "../../context/mainContext";
+import UnstoppableLogin from './UnstoppableLogin';
 
 export default function NavigationBar() {
   const { connectWallet, isWalletConnected, account, shortenAddress } = useContext(MainContext);
@@ -17,7 +18,9 @@ export default function NavigationBar() {
         <span className="text-xl text-white cursor-pointer">Inventory</span>
       </Link>
       <div className="w-64">
-        <GradientButton text={isWalletConnected ? shortenAddress(account) : "Connect"} onClick={connectWallet} />
+        {/* <GradientButton text={isWalletConnected ? shortenAddress(account) : "Connect"} onClick={connectWallet} /> */}
+        <UnstoppableLogin />
+
       </div>
     </div>
 
