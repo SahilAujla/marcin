@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap"
 
 const uauth = new UAuth({
     clientID: "fd993dd1-4d9b-4f52-95d8-b5dfbf4695ef",
-    redirectUri: "http://localhost:3000",
+    redirectUri: "https://marcin.vercel.app/",
 })
 
 function UnstoppableLogin() {
